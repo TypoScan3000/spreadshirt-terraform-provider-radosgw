@@ -143,7 +143,7 @@ func (r *userResource) Read(ctx context.Context, req resource.ReadRequest, resp 
 }
 
 func (r *userResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
-	// Retrieve import ID and save to id attribute
+	// Retrieve import ID and save to user_id attribute
 	resource.ImportStatePassthroughID(ctx, path.Root("user_id"), req, resp)
 }
 
@@ -179,7 +179,7 @@ func (r *userResource) Update(ctx context.Context, req resource.UpdateRequest, r
 	user, err = r.client.ModifyUser(ctx, user)
 	if err != nil {
 		resp.Diagnostics.AddError(
-			"Error update user",
+			"Error updating user",
 			"Could not update user, unexpected error: "+err.Error(),
 		)
 		return
